@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>相册图片可放大查看--practice02</title>
+
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.wrapper {
+				height: 630px;
+				width: 100%;
+			}
+
+			.list {
+				position: absolute;
+				margin-left: 50%;
+				left: -500px;
+				width: 1000px;
+				height: 100%;
+				overflow: hidden;
+			}
+
+			.list li {
+				float: left;
+				margin: 10px 20px;
+				list-style: none;
+				/* 去除原有的黑点 */
+			}
+
+			.list img {
+				border-radius: 5px;
+				box-shadow: 2px 2px 5px #333;
+			}
+
+			.blackBox {
+				position: absolute;
+				width: 100%;
+				height: 630px;
+				background: rgba(000, 000, 000, 0.7);
+				display: none;
+			}
+
+			.bigBox {
+				position: relative;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-around;
+				top: 50%;
+				left: 50%;
+				margin-left: -400px;
+				margin-top: -250px;
+				width: 800px;
+				height: 500px;
+			}
+
+			.imgBox {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				width: 670px;
+				height: 425px;
+				background-color: #ffffff;
+			}
+
+			#bigImg {
+				width: 650px;
+				height: 405px;
+			}
+
+			.imgBox btnImg {
+				width: 18px;
+				height: 25px;
+			}
+		</style>
+
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var bigImgs = []
+				var curIndex = 0
+
+				var blackBox = $(".blackBox")
+				var bigImg = $('#bigImg')
+
+				for (var i = 1; i < 10; i++) {
+					var bName = 'img/big' + i + '.jpg'
+					var sName = 'img/s' + i + '.jpg'
+					bigImgs.push(bName)
+					addLi(i, bName, sName)
+				}
+
+				// 点击blackBox
+				blackBox.on("click", function() {
+					$(this).css('display', 'none')
+				})
+
+				// 点击li图片
+				$('#ulImg a').on("click", function() {
+					blackBox.css('display', 'block')
+					bigImg.attr('src', this.name)
+
+					curIndex = $.inArray(this.name, bigImgs)
+				})
+
+				// 点击上一张按钮
+				$('#leftBtn').on("click", function(e) {
+					e.stopPropagation()
+					if (curIndex === 0) {
+						alert('当前已是第一张')
+						return
+					}
+					curIndex--
+					let bImg = bigImgs[curIndex]
+					bigImg.attr('src', bImg)
+				})
+
+				// 点击下一张按钮
+				$('#rightBtn').on("click", function(e) {
+					e.stopPropagation()
+					if (curIndex >= bigImgs.length) {
+						alert('当前已是最后一张')
+						return
+					}
+					curIndex++
+					let bImg = bigImgs[curIndex]
+					bigImg.attr('src', bImg)
+				})
+
+				function addLi(i, bName, sName) {
+					var ul = $('#ulImg') // document.getElementById("ulImg")
+					let t = "<li><a href='javascript:;' name='" + bName + "'><img src='" + sName + "'/></a></li>"
+					ul.append(t)
+				}
+
+				// var li = document.createElement("li")
+				// var a = document.createElement('a')
+				// a.setAttribute('href', bName)
+				//var img = document.createElement('img')
+				//img.setAttribute('src', sName)
+				// 
+				//a.appendChild(img)
+				//li.appendChild(a)
+				//ul.appendChild(li)
+				// 
+				// a.index = i
+				// a.live('click', function() {
+				// 		alert('呵呵哈哈哈'); //弹出点击的li标签的value值
+				// })
+
+			})
+		</script>
+	</head>
+	<body>
+		<div class="wrapper">
+
+			<div class="list">
+				<ul id="ulImg"></ul>
+			</div>
+
+			<div class="blackBox">
+				<div class="bigBox">
+					<img id="leftBtn" src="img/dirl.png">
+					<div class="imgBox">
+						<img id="bigImg" src="img/big1.jpg">
+					</div>
+					<img id="rightBtn" src="img/dirr.png">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
