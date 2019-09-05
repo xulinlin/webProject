@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.box {
+				position: relative;
+				top: 100px;
+				left: 50%;
+				width: 900px;
+				height: 300px;
+				margin-left: -450px;
+				border: 8px groove #333333;
+			}
+
+			.bgImg {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+			.ulBox {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 300px;
+				height: 100%;
+				background-color: rgba(0, 0, 0, .2);
+				list-style: none;
+				overflow: hidden;
+				overflow-y: scroll;
+			}
+
+			.liBox {
+				width: 100%;
+				height: 70px;
+				background-color: rgba(0, 0, 0, .3);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: row;
+			}
+
+			.liBoxChoose {
+				background-color: rgba(0, 0, 0, .5);
+			}
+
+			li a {
+				text-decoration: none;
+			}
+
+			.leftImg {
+				width: 40px;
+				height: 40px;
+			}
+
+			.rightBox {
+				margin-left: 10px;
+				width: 200px;
+				height: 40px;
+			}
+
+			.rightBox .titleText {
+				color: #FFFFFF;
+				font-size: 14px;
+				display: block;
+			}
+
+			.rightBox .detailText {
+				color: #E3E3E3;
+				font-size: 12px;
+				display: block;
+			}
+		</style>
+
+		<script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var curIndex = 0
+				var dataList = [{
+						'id': 1,
+						'title': '精心挑选，倾情推荐1',
+						'detail': '推荐精品应用，享受多彩上网1',
+						'sImg': 'images/but1.png',
+						'bImg': 'images/1.png'
+					},
+					{
+						'id': 2,
+						'title': '精心挑选，倾情推荐2',
+						'detail': '推荐精品应用，享受多彩上网',
+						'sImg': 'images/but2.png',
+						'bImg': 'images/2.png'
+					},
+					{
+						'id': 3,
+						'title': '精心挑选，倾情推荐3',
+						'detail': '推荐精品应用，享受多彩上网',
+						'sImg': 'images/but3.png',
+						'bImg': 'images/3.png'
+					},
+					{
+						'id': 4,
+						'title': '精心挑选，倾情推荐4',
+						'detail': '推荐精品应用，享受多彩上网',
+						'sImg': 'images/but4.png',
+						'bImg': 'images/4.png'
+					},
+					{
+						'id': 5,
+						'title': '精心挑选，倾情推荐5',
+						'detail': '推荐精品应用，享受多彩上网',
+						'sImg': 'images/but1.png',
+						'bImg': 'images/1.png',
+					}
+
+				]
+
+				var ulBox = $('.ulBox')
+				var bgImg = $('.bgImg')
+				$.each(dataList, function(index, value) {
+					addLi(index, value)
+				})
+
+				$('.ulBox a').on('click', function() {
+					if (curIndex === this.dataset.id) {
+						return
+					}
+					$('div.liBoxChoose').removeClass('liBoxChoose')
+					$(this.firstElementChild).addClass('liBoxChoose')
+					curIndex = this.dataset.id
+					let img = dataList[curIndex].bImg
+					bgImg.attr('src', img)
+					bgImg.height(0)
+					bgImg.width(0)
+
+					bgImg.animate({
+						width: '100%',
+						height: '100%',
+					}, 300, 'linear', function() {
+
+					})
+				})
+
+
+				function addLi(index, value) {
+					let bgColor = index === curIndex ? 'liBoxChoose' : ''
+					let str =
+						'<li><a href="javascript:;"  data-id = "' + index + '"><div class="liBox ' + bgColor + '"> <img src="' + value.sImg +
+						'" class="leftImg" /><div class="rightBox"><label class="titleText">' + value.title +
+						'</label><label class="detailText">' + value.detail + '</label></div></div></a></li>'
+
+					ulBox.append(str)
+				}
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="box">
+				<img src="images/1.png" class="bgImg" />
+
+				<ul class="ulBox">
+					<!-- <li>
+						<a href="javascript:;" data-id="1">
+							<div class="liBox">
+								<img src="images/but1.png" class="leftImg" />
+								<div class="rightBox">
+									<label class="titleText">精心挑选，倾情推荐</label>
+									<label class="detailText">推荐精品应用，享受多彩上网</label>
+								</div>
+							</div>
+						</a>
+					</li> -->
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
