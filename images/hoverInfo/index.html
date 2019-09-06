@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>鼠标悬浮动画--practice</title>
+
+		<style type="text/css">
+			.wrapper {
+				padding: 10px;
+			}
+
+			.listBox {
+				position: relative;
+				margin-left: 30px;
+				margin-right: 30px;
+				overflow: hidden;
+				overflow-y: scroll;
+				clear: both;
+			}
+
+			.imgBox {
+				position: relative;
+				float: left;
+				margin: 30px;
+				width: 300px;
+				height: 450px;
+				overflow: hidden;
+			}
+
+			.listBox>.imgBox:hover {
+				cursor: pointer;
+			}
+
+			.img {
+				/* position: relative; */
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+			.infoBox {
+				position: absolute;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, .65);
+				display: block;
+				transition: all 0.5s ease;
+			}
+
+			.imgBox:hover .infoBox {
+				left: 0;
+			}
+
+			.infoBox h3 {
+				color: #FFFFFF;
+				text-align: center;
+			}
+
+			.infoBox b {
+				color: #E3E3E3;
+			}
+
+			.infoBox p {
+				color: #EEEEEE;
+			}
+		</style>
+
+		<script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript">
+			function imgClick() {
+				alert('点击了图片')
+			}
+
+			$(function() {
+
+			})
+		</script>
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+
+			<div class="listBox">
+				<div class="imgBox" onclick="imgClick()">
+					<img src="images/image1.jpg" class="img" />
+					<div class="infoBox">
+						<h3>熊本熊高清壁纸</h3>
+						<p><b>下载内容:</b><br />蠢萌蠢萌可爱的网红表情包熊本熊在线官方高清壁纸</p>
+						<p><b>内容介绍:</b><br />熊本熊是日本熊本县营业部长兼幸福部长、熊本县地方吉祥物</p>
+						<p><b>下载费用:</b>免费</p>
+					</div>
+				</div>
+
+				<div class="imgBox" onclick="imgClick()">
+					<img src="images/image1.jpg" class="img" />
+					<div class="infoBox">
+						<h3>熊本熊高清壁纸</h3>
+						<p><b>下载内容:</b><br />蠢萌蠢萌可爱的网红表情包熊本熊在线官方高清壁纸</p>
+						<p><b>内容介绍:</b><br />熊本熊是日本熊本县营业部长兼幸福部长、熊本县地方吉祥物</p>
+						<p><b>下载费用:</b>免费</p>
+					</div>
+				</div>
+				
+				<div class="imgBox" onclick="imgClick()">
+					<img src="images/image1.jpg" class="img" />
+					<div class="infoBox">
+						<h3>熊本熊高清壁纸</h3>
+						<p><b>下载内容:</b><br />蠢萌蠢萌可爱的网红表情包熊本熊在线官方高清壁纸</p>
+						<p><b>内容介绍:</b><br />熊本熊是日本熊本县营业部长兼幸福部长、熊本县地方吉祥物</p>
+						<p><b>下载费用:</b>免费</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>
